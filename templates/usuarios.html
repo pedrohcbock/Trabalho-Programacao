@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title></title>
+</head>
+<body>
+        <h1>Usuários</h1>
+    <p>Listagem de usuários</p>
+
+        <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+
+                {% for usr in usuarios %}
+        <!-- Linha para repetir -->
+        <tr>
+            <td>{{usr.nome}}</td>
+            <td>{{usr.email}}</td>
+        </tr>
+        <!-- / Linha para repetir -->
+        {% else %}
+        <tr>
+            <td colspan="2">Nenhum usuário</td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+        <a href="novo_usuario.php" class="btn btn-primary">Adicionar usuário</a>
+    </div>
+</body>
+</html>

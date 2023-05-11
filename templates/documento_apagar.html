@@ -1,0 +1,14 @@
+{# usuario_apagar.html #}
+
+<h1>Apagar usuário</h1>
+
+<p>Tem certeza de que quer fazer isso?</p>
+<p>Nunca mais será possível recuperar este usuário</p>
+
+<form action="#" method="post">
+    <input type="hidden" name="id" value="{{ usuario.id }}">
+    <input class="btn btn-danger" type="submit" value="Apagar">
+</form>
+
+
+<div><a href="documentos.php">Cancelar</a></div>

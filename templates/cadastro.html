@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+</head>
+
+<body>
+    <div class="form">
+        <fieldset class="irPara">
+        <div class="titulo-criar-acess">
+            Bem vindo de volta!
+        </div>
+        <div class="testo-pequenho-acess">
+            Já possui uma conta? Entre com seus dados de acesso!
+        </div>
+        <a href="login.php">Acessar</a>
+    </fieldset>
+        <form method="post" action="cadastro_usuario.php">
+            <fieldset class="fieldset">
+                <div class="titulo-acess">Crie uma conta!</div>
+                <div class="formCadastro">
+                    <label for="nome"  class="label" >Nome</label>
+                    <input type="text" class="input" name="nome" required />
+                </div>
+                <div class="formCadastro">
+                    <label for="email" class="label">E-mail</label>
+                    <input type="emai" class="input" name="email" required />
+                </div>
+                <div class="formCadastro">
+                    <label for="senha" class="label">Senha</label>
+                    <input type="password" class="input" name="senha" required />
+                </div>
+                <div>
+                    <button class="button-acess">Entrar</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
