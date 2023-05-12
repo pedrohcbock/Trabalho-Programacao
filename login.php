@@ -1,5 +1,5 @@
 <?php
-    require('carregar_twig.php');
+    require_once 'carregar_twig.php';
 
     $erro = $_GET['erro'] ?? false;
 

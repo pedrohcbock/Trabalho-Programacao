@@ -80,20 +80,4 @@ class Model
 
         return $insert->errorInfo();
     }
-
-
-    public function update($data, $id)
-    {
-        // Remove índice 'id' do $data
-        unset($data['id']);
-
-        $sql = "UPDATE {$this->table}";
-        $sql .= ' SET ' . $this->sql_fields($data);
-        $sql .= ' WHERE id = :id';
-
-        $data['id'] = $id;
-
-        $upd = $this->conex->prepare($sql);
-        $upd->execute($data);
-    }
 }

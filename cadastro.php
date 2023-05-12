@@ -1,6 +1,6 @@
 <?php
-    require('models/Model.php');
-    require('models/Usuario.php');
+    require_once 'models/Model.php';
+    require_once 'models/Usuario.php';
 
     $nome = $_POST['nome'] ?? false;
     $email =$_POST['email'] ?? false;
@@ -20,5 +20,5 @@
         'senha' => $senha,
     ]);
 
-    // header('location:menu.php');
+    header('location:menu.php');
 ?>

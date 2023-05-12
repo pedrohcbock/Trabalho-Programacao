@@ -14,5 +14,4 @@ CREATE TABLE arquivos (
     conteudo LONGTEXT NOT NULL,
     usuario VARCHAR(250) NOT NULL,
     data_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
-);
+    PRIMARY KEY (id))

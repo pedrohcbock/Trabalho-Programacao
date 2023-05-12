@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<form method="post">
+    <label for="tipo">Filtrar por tipo:</label>
+    <select id="tipo" name="tipo">
+        <option value="">Todos</option>
+        <option value="application/pdf">PDF</option>
+        <option value="application/msword">DOC</option>
+        <option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">DOCX</option>
+    </select>
+
+    <label for="usuario">Filtrar por usuário:</label>
+    <input type="text" id="usuario" name="usuario">
+
+    <label for="data">Filtrar por data:</label>
+    <input type="date" id="data" name="data">
+
+    <input type="submit" value="Filtrar">
+</form>
+
+<table>
+    <tr>
+        <th>Usuário</th>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Ação</th>
+    </tr>
+    {% for row in table_rows %}
+    <tr>
+        <td>{{ row.usuario }}</td>
+        <td>{{ row.nome }}</td>
+        <td>{{ row.tipo }}</td>
+        <td>{{ row.data_envio }}</td>
+        <td><a href="data:{{ row.tipo }};base64,{{ row.conteudo }}" download>Download</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+
+</html>
+

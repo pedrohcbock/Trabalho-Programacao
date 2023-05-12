@@ -1,5 +1,5 @@
 <?php
-require('pdo.php');
+require_once 'pdo.php';
 
 $user = $_POST['nome'];
 $pass = $_POST['senha'];
@@ -24,7 +24,7 @@ if ($sql->rowCount()) {
     session_start();
     $_SESSION['user'] = $user->nome;
 
-    header('location:upload_arquivo.php');
+    header('location:menu.php');
     die;
 } else {
 
