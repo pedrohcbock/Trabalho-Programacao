@@ -1,5 +1,5 @@
 <?php
-require_once 'sessao_verifica.php';
+require_once 'verifica_sessao.php';
 
 $formatos_permitidos = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
@@ -10,19 +10,29 @@ if (!isset($_FILES['arquivo']) || $_FILES['arquivo']['error'] !== UPLOAD_ERR_OK)
 
 $arquivo = $_FILES['arquivo'];
 
+if ($arquivo['size'] > 5 * 1024 * 1024) {
+  echo 'O arquivo excede o tamanho máximo permitido de 5 MB';
+  exit;
+}
+
 if (!in_array($arquivo['type'], $formatos_permitidos)) {
   echo 'Formato do arquivo não é permitido';
   exit;
 }
 
-$conteudo = file_get_contents($arquivo['tmp_name']);
+$pasta_destino = 'documents/';
 
-$base64 = base64_encode($conteudo);
+$caminho_completo = $pasta_destino . $arquivo['name'];
+
+if (!move_uploaded_file($arquivo['tmp_name'], $caminho_completo)) {
+    echo 'Erro ao mover o arquivo';
+    exit;
+}
 
 require_once 'pdo.php';
 
-$stmt = $pdo->prepare('INSERT INTO arquivos (nome, tipo, conteudo, usuario) VALUES (?, ?, ?, ?)');
-$stmt->execute([$arquivo['name'], $arquivo['type'], $base64, $usuario]);
+$stmt = $pdo->prepare('INSERT INTO arquivos (caminho, nome, tipo, usuario) VALUES (?, ?, ?, ?)');
+$stmt->execute([$caminho_completo, $arquivo['name'], $arquivo['type'], $usuario]);
 
 echo 'Arquivo enviado com sucesso';
 ?>
