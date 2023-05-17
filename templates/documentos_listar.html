@@ -20,7 +20,7 @@
     </select>
 
     <label for="usuario">Filtrar por usuário:</label>
-    <input type="text" id="usuario" name="usuario">
+    <input type="text" id="usuario_id" name="usuario_id">
 
     <label for="data">Filtrar por data:</label>
     <input type="date" id="data" name="data">
@@ -38,7 +38,7 @@
     </tr>
     {% for row in table_rows %}
     <tr>
-        <td>{{ row.usuario }}</td>
+        <td>{{ row.usuario_id }}</td>
         <td>{{ row.nome }}</td>
         <td>{{ row.tipo }}</td>
         <td>{{ row.data_envio }}</td>

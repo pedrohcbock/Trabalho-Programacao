@@ -22,7 +22,7 @@ if ($sql->rowCount()) {
     }
 
     session_start();
-    $_SESSION['user'] = $user->nome;
+    $_SESSION['user'] = $user->id;
 
     header('location:menu.php');
     die;

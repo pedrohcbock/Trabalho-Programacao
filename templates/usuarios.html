@@ -18,12 +18,10 @@
         </tr>
 
                 {% for usr in usuarios %}
-        <!-- Linha para repetir -->
         <tr>
             <td>{{usr.nome}}</td>
             <td>{{usr.email}}</td>
         </tr>
-        <!-- / Linha para repetir -->
         {% else %}
         <tr>
             <td colspan="2">Nenhum usuário</td>

@@ -1,5 +1,7 @@
 <?php
 require_once 'verifica_sessao.php';
+require 'models/Model.php';
+require 'models/Documento.php';
 
 $formatos_permitidos = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
@@ -7,6 +9,8 @@ if (!isset($_FILES['arquivo']) || $_FILES['arquivo']['error'] !== UPLOAD_ERR_OK)
   echo 'Erro ao enviar o arquivo';
   exit;
 }
+
+$usuario_id = $_SESSION['user'];
 
 $arquivo = $_FILES['arquivo'];
 
@@ -25,14 +29,17 @@ $pasta_destino = 'documents/';
 $caminho_completo = $pasta_destino . $arquivo['name'];
 
 if (!move_uploaded_file($arquivo['tmp_name'], $caminho_completo)) {
-    echo 'Erro ao mover o arquivo';
-    exit;
+  echo 'Erro ao mover o arquivo';
+  exit;
 }
 
-require_once 'pdo.php';
-
-$stmt = $pdo->prepare('INSERT INTO arquivos (caminho, nome, tipo, usuario) VALUES (?, ?, ?, ?)');
-$stmt->execute([$caminho_completo, $arquivo['name'], $arquivo['type'], $usuario]);
+$doc = new Documento();
+$doc->create([
+  'nome' => $arquivo['name'],
+  'caminho' => $caminho_completo,
+  'tipo' => $arquivo['type'],
+  'usuario_id' => $usuario_id,
+]);
 
 echo 'Arquivo enviado com sucesso';
 ?>

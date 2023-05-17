@@ -1,4 +1,10 @@
-
+{% if erro == 1 %}
+	Usuário ou senha inválidos! 😯
+{% elseif erro == 2 %}
+    Você está tentando acessar uma página restrita, safadinho! 😒
+{% elseif erro == 3 %}
+	Senha alterada com sucesso. Vê se não esquece agora, imbecil. 🥰🥰🥰
+{% endif %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -28,7 +34,7 @@
                 
             </fieldset>
         </div>
-        <form action="login_verifica.php" method="post">
+        <form action="verifica_login.php" method="post">
             <fieldset class="fieldset">
 
                 <div class="titulo-acess">Olá, seja bem vindo!</div>

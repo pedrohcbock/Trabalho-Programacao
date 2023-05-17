@@ -5,10 +5,10 @@ require_once 'carregar_twig.php';
 $pasta_documentos = 'documents/';
 
 $filtro_tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
-$filtro_usuario = isset($_POST['usuario']) ? $_POST['usuario'] : '';
+$filtro_usuario = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
 $filtro_data = isset($_POST['data']) ? $_POST['data'] : '';
 
-$sql = 'SELECT * FROM arquivos WHERE 1=1';
+$sql = 'SELECT * FROM documentos WHERE 1=1';
 $parametros = array();
 
 if (!empty($filtro_tipo)) {
@@ -17,12 +17,12 @@ if (!empty($filtro_tipo)) {
 }
 
 if (!empty($filtro_usuario)) {
-    $sql .= ' AND usuario = ?';
+    $sql .= ' AND usuario_id = ?';
     $parametros[] = $filtro_usuario;
 }
 
 if (!empty($filtro_data)) {
-    $sql .= ' AND data_envio = ?';
+    $sql .= ' AND data = ?';
     $parametros[] = $filtro_data;
 }
 
@@ -45,10 +45,10 @@ foreach ($stmt as $row) {
     }
 
     $table_rows[] = array(
-        'usuario' => $row['usuario'],
+        'usuario_id' => $row['usuario_id'],
         'nome' => $row['nome'],
         'tipo' => $row['tipo'],
-        'data_envio' => $row['data_envio'],
+        'data' => $row['data'],
         'caminho' => $caminho_do_arquivo,
     );
 }
