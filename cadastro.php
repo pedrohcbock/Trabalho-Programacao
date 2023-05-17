@@ -20,6 +20,6 @@
         'senha' => $senha,
     ]);
 
-    header('location:menu.php');
+    header('location:login.php');
 ?>
 

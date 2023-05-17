@@ -1,37 +1,21 @@
 <?php
 require_once 'pdo.php';
 require_once 'carregar_twig.php';
+require_once 'verifica_sessao.php'; // Inclua o arquivo de verificação de sessão
 
 $pasta_documentos = 'documents/';
 
-$filtro_tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
-$filtro_usuario = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : '';
-$filtro_data = isset($_POST['data']) ? $_POST['data'] : '';
+// Obtém o ID do usuário logado
+$usuario_id = $_SESSION['user'];
 
-$sql = 'SELECT * FROM documentos WHERE 1=1';
-$parametros = array();
-
-if (!empty($filtro_tipo)) {
-    $sql .= ' AND tipo = ?';
-    $parametros[] = $filtro_tipo;
-}
-
-if (!empty($filtro_usuario)) {
-    $sql .= ' AND usuario_id = ?';
-    $parametros[] = $filtro_usuario;
-}
-
-if (!empty($filtro_data)) {
-    $sql .= ' AND data = ?';
-    $parametros[] = $filtro_data;
-}
-
+// Consulta SQL para obter os documentos do usuário logado
+$sql = 'SELECT * FROM documentos WHERE usuario_id = ?';
 $stmt = $pdo->prepare($sql);
-$stmt->execute($parametros);
+$stmt->execute([$usuario_id]);
 
 $arquivos_na_pasta = glob($pasta_documentos . '*');
 
-if (count($arquivos_na_pasta) === 0) {
+if ($stmt->rowCount() === 0) {
     echo 'Não foram encontrados documentos.';
     exit;
 }

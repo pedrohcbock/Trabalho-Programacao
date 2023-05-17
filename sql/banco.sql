@@ -12,6 +12,6 @@ CREATE TABLE documentos(
     nome VARCHAR(250) NOT NULL,
     tipo VARCHAR(250) NOT NULL,
     caminho VARCHAR(250) NOT NULL,
-    usuario VARCHAR(250) NOT NULL,
+    usuario_id VARCHAR(250) NOT NULL,
     data DATE NOT NULL DEFAULT CURDATE(),
     PRIMARY KEY (id))
