@@ -8,15 +8,31 @@ $pasta_documentos = 'documents/';
 // Obtém o ID do usuário logado
 $usuario_id = $_SESSION['user'];
 
-// Consulta SQL para obter os documentos do usuário logado
+// Obtém os valores dos filtros
+$filtro_tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
+$filtro_data = isset($_POST['data']) ? $_POST['data'] : '';
+
+// Consulta SQL para obter os documentos do usuário logado com filtros
 $sql = 'SELECT * FROM documentos WHERE usuario_id = ?';
+$params = [$usuario_id];
+
+if (!empty($filtro_tipo)) {
+    $sql .= ' AND tipo = ?';
+    $params[] = $filtro_tipo;
+}
+
+if (!empty($filtro_data)) {
+    $sql .= ' AND data = ?';
+    $params[] = $filtro_data;
+}
+
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$usuario_id]);
+$stmt->execute($params);
 
 $arquivos_na_pasta = glob($pasta_documentos . '*');
 
 if ($stmt->rowCount() === 0) {
-    echo 'Não foram encontrados documentos.';
+    echo 'Não foram encontrados documentos. <a href="documentos_listar.php">Voltar</a>';
     exit;
 }
 
