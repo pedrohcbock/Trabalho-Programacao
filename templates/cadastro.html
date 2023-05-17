@@ -1,3 +1,4 @@
+{% include "inc/header.html" %} 
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -9,36 +10,40 @@
 </head>
 
 <body>
-    <div class="form">
-        <fieldset class="irPara">
-        <div class="titulo-criar-acess">
-            Bem vindo de volta!
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <fieldset>
+                    <div class="text-center">
+                        <h2>Bem-vindo!</h2>
+                        <p>Já possui uma conta? Entre com seus dados de acesso! <br>
+                        <a href="login.php">Acessar</a></p>
+                        <h3>ou</h3>
+                    </div>
+                </fieldset>
+
+                <form method="post" action="cadastro.php">
+                    <fieldset>
+                        <legend class="text-center">Crie uma conta!</legend>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" name="nome" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" class="form-control" name="senha" required />
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-        <div class="testo-pequenho-acess">
-            Já possui uma conta? Entre com seus dados de acesso!
-        </div>
-        <a href="login.php">Acessar</a>
-    </fieldset>
-        <form method="post" action="cadastro.php">
-            <fieldset class="fieldset">
-                <div class="titulo-acess">Crie uma conta!</div>
-                <div class="formCadastro">
-                    <label for="nome"  class="label" >Nome</label>
-                    <input type="text" class="input" name="nome" required />
-                </div>
-                <div class="formCadastro">
-                    <label for="email" class="label">E-mail</label>
-                    <input type="emai" class="input" name="email" required />
-                </div>
-                <div class="formCadastro">
-                    <label for="senha" class="label">Senha</label>
-                    <input type="password" class="input" name="senha" required />
-                </div>
-                <div>
-                    <button class="button-acess">Entrar</button>
-                </div>
-            </fieldset>
-        </form>
     </div>
 </body>
 

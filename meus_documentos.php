@@ -35,7 +35,7 @@ $stmt->execute($parametros);
 $arquivos_na_pasta = glob($pasta_documentos . '*');
 
 if ($stmt->rowCount() === 0) {
-    echo 'Não foram encontrados documentos. <a href="documentos_listar.php">Voltar</a>';
+    echo 'Não foram encontrados documentos. <a href="meus_documentos.php">Voltar</a>';
     exit;
 }
 

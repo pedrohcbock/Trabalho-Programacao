@@ -16,7 +16,7 @@ $filtro_compartilhador = isset($_POST['compartilhador']) ? $_POST['compartilhado
 $sql = 'SELECT d.id, d.usuario_id, d.nome, d.tipo, d.data, u.nome AS nome_compartilhador
         FROM compartilhamentos c
         INNER JOIN documentos d ON c.documento_id = d.id
-        INNER JOIN usuarios u ON c.usuario_id = u.id
+        INNER JOIN usuarios u ON d.usuario_id = u.id
         WHERE c.usuario_id = ?';
 
 $parametros = [$usuario_id];

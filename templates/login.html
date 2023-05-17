@@ -1,56 +1,51 @@
+{% include "inc/header.html" %} 
 {% if erro == 1 %}
-	Usuário ou senha inválidos! 😯
+	Usuário ou senha inválidos!
 {% elseif erro == 2 %}
-    Você está tentando acessar uma página restrita, safadinho! 😒
-{% elseif erro == 3 %}
-	Senha alterada com sucesso. Vê se não esquece agora, imbecil. 🥰🥰🥰
+    Você está tentando acessar uma página sem estar logado.
 {% endif %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
     <title>Login</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
-    <div class="form-cadastro">
-        <div class="cadastro">
-            <fieldset class="irPara">
-                <div class="titulo-criar-acess">
-                    Olá, amigo!
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-cadastro">
+                    <div class="cadastro">
+                        <fieldset>
+                            <div class="text-center">
+                                <h2>Olá amigo, é muito bom lhe ver novamente!</h2>
+                                <p>Não possui uma conta? Crie uma agora mesmo!
+                                <a href="cadastro_usuario.php">Cadastrar-se</a></p>
+                                <h3>ou</h3>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <form action="verifica_login.php" method="post">
+                        <fieldset class="fieldset">
+                            <legend class="text-center">Faça login!</legend>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="senha" placeholder="Digite sua senha" required />
+                            </div>
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
-                <div class="testo-pequenho-acess">
-                    Introduza os seus dados pessoais e conecte-se conosco!
-                </div>
-                <div >
-                    <button class="button-acess-cad"  >
-                        <a href="cadastro_usuario.php" >Cadastrar-se</a>
-                    </button>
-                </div>
-                
-            </fieldset>
+            </div>
         </div>
-        <form action="verifica_login.php" method="post">
-            <fieldset class="fieldset">
-
-                <div class="titulo-acess">Olá, seja bem vindo!</div>
-
-                <div class="preencher">
-
-                    <input type="text" class="input" name="nome" placeholder="Digite seu nome" required  />
-                </div>
-                <div class="preencher">
-                    <input type="password" class="input" name="senha" placeholder="Digite sua" required />
-                </div>
-                <div class="button">
-                    <button class="button-acess">Entrar</button>
-                </div>
-            </fieldset>
-        </form>
     </div>
 </body>
 

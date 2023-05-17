@@ -1,55 +1,70 @@
+{% include "inc/header.html" %} 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Documentos compartilhados comigo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
 <body>
-    <h1>Documentos compartilhados comigo</h1>
-<form method="post">
-    <label for="tipo">Filtrar por tipo:</label>
-    <select id="tipo" name="tipo">
-        <option value="">Todos os tipos</option>
-        <option value="application/pdf">PDF</option>
-        <option value="application/msword">DOC</option>
-        <option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">DOCX</option>
-    </select>
+    <div class="container">
+        <h1 class="text-center">Documentos compartilhados comigo</h1>
+        <form method="post" class="my-4">
+            <div class="form-row align-items-center">
+                <div class="col-md-3">
+                    <label for="tipo">Filtrar por tipo:</label>
+                    <select id="tipo" name="tipo" class="form-control">
+                        <option value="">Todos os tipos</option>
+                        <option value="application/pdf">PDF</option>
+                        <option value="application/msword">DOC</option>
+                        <option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">DOCX</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="compartilhador">Filtrar por nome do compartilhador:</label>
+                    <input type="text" name="compartilhador" placeholder="Filtrar por nome do compartilhador" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="nome">Filtrar por nome:</label>
+                    <input type="text" name="nome" placeholder="Filtrar por nome" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="data">Filtrar por data:</label>
+                    <input type="date" id="data" name="data" class="form-control">
+                </div>
+                <div class="col-md-12 mt-3">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </form>
 
-    <label for="compartilhador">Filtrar por nome do compartilhador:</label>
-    <input type="text" name="compartilhador" placeholder="Filtrar por nome do compartilhador">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Usuário que compartilhou</th>
+                    <th scope="col">Nome do documento</th>
+                    <th scope="col">Tipo do documento</th>
+                    <th scope="col">Data de envio</th>
+                    <th scope="col">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documentos %}
+                <tr>
+                    <td>{{ doc.compartilhador }}</td>
+                    <td>{{ doc.nome }}</td>
+                    <td>{{ doc.tipo }}</td>
+                    <td>{{ doc.data }}</td>
+                    <td><a href="data:{{ doc.tipo }};base64,{{ doc.conteudo }}" download class="btn btn-primary">Download</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <label for="nome">Filtrar por nome:</label>
-    <input type="text" name="nome" placeholder="Filtrar por nome">
-
-    <label for="data">Filtrar por data:</label>
-    <input type="date" id="data" name="data">
-
-    <input type="submit" value="Filtrar">
-</form>
-
-<table>
-    <tr>
-        <th>Usuário que compartilhou</th>
-        <th>Nome do documento</th>
-        <th>Tipo do docuento</th>
-        <th>Data de envio</th>
-        <th>Download</th>
-    </tr>
-    {% for doc in documentos %}
-    <tr>
-        <td>{{ doc.compartilhador}}</td>
-        <td>{{ doc.nome }}</td>
-        <td>{{ doc.tipo }}</td>
-        <td>{{ doc.data }}</td>
-        <td><a href="data:{{ doc.tipo }};base64,{{ doc.conteudo }}" download>Download</a></td>
-    </tr>
-    {% endfor %}
-</table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-

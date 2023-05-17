@@ -1,3 +1,4 @@
+{% include "inc/header.html" %} 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,33 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <title></title>
+    <title>Lista de Amigos</title>
 </head>
 <body>
-        <h1>Usuários</h1>
-    <p>Listagem de usuários</p>
+    <div class="container">
+        <h1 class="text-center">Amigos</h1>
+        <p class="text-center">Lista de Amigos Adicionados</p>
 
-        <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Remover</th>
-        </tr>
-
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody>
                 {% for usr in usuarios %}
-        <tr>
-            <td>{{usr.nome}}</td>
-            <td>{{usr.email}}</td>
-            <td><a class="btn btn-danger" href="usuario_apagar.php?id={{usr.id}}">Apagar</a></td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="2">Nenhum usuário</td>
-        </tr>
-        {% endfor %}
-        
-    </table>
-        <a href="cadastro_usuario.php" class="btn btn-primary">Adicionar usuário</a>
+                <tr>
+                    <td>{{usr.nome}}</td>
+                    <td>{{usr.email}}</td>
+                    <td><a class="btn btn-danger" href="usuario_apagar.php?id={{usr.id}}">Remover amigo</a></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">Nenhum amigo</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a href="cadastro_usuario.php" class="btn btn-primary">Adicionar amigo</a>
+        </div>
     </div>
 </body>
 </html>
