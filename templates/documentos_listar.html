@@ -9,18 +9,18 @@
 </head>
 
 <body>
-    <h1>Documentos Compartilhados comigo</h1>
+    <h1>Meus Documentos</h1>
 <form method="post">
     <label for="tipo">Filtrar por tipo:</label>
     <select id="tipo" name="tipo">
-        <option value="">Todos</option>
+        <option value="">Todos os tipos</option>
         <option value="application/pdf">PDF</option>
         <option value="application/msword">DOC</option>
         <option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">DOCX</option>
     </select>
 
-    <label for="usuario">Filtrar por usuário:</label>
-    <input type="text" id="usuario_id" name="usuario_id">
+    <label for="nome">Filtrar por nome:</label>
+    <input type="text" name="nome" placeholder="Filtrar por nome">
 
     <label for="data">Filtrar por data:</label>
     <input type="date" id="data" name="data">
@@ -34,15 +34,17 @@
         <th>Nome</th>
         <th>Tipo</th>
         <th>Data</th>
+        <th>Download</th>
         <th>Ação</th>
     </tr>
-    {% for row in table_rows %}
+    {% for doc in documentos %}
     <tr>
-        <td>{{ row.usuario_id }}</td>
-        <td>{{ row.nome }}</td>
-        <td>{{ row.tipo }}</td>
-        <td>{{ row.data_envio }}</td>
-        <td><a href="data:{{ row.tipo }};base64,{{ row.conteudo }}" download>Download</a></td>
+        <td>{{ doc.usuario_id }}</td>
+        <td>{{ doc.nome }}</td>
+        <td>{{ doc.tipo }}</td>
+        <td>{{ doc.data }}</td>
+        <td><a href="data:{{ doc.tipo }};base64,{{ doc.conteudo }}" download>Download</a></td>
+        <td><a class="btn btn-danger" href="documento_apagar.php?id={{doc.id}}">Apagar</a></td>
     </tr>
     {% endfor %}
 </table>

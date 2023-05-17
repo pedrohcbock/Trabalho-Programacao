@@ -1,0 +1,18 @@
+{# usuario_apagar.html #}
+
+    <h1>Apagar usuário</h1>
+    
+    <p>Tem certeza de que quer fazer isso?</p>
+    <p>Nunca mais será possível recuperar este usuário 😮</p>
+    
+    <p><strong>Você está prestes a apagar o coitado do {{ usuario.nome }}</strong></p>
+    
+    <form action="#" method="post">
+        <input type="hidden" name="id" value="{{ usuario.id }}">
+        <input class="btn btn-danger" type="submit" value="Apagar o dito cujo">
+    </form>
+    
+    <img src="https://img.ifunny.co/images/e599f4d88377c885bf59fd4131ff924d9da415d5c7dad9c3c3265e6331647c7a_1.jpg">
+    
+    <div><a class="btn" href="/usuarios">Cancelar</a></div>
+    

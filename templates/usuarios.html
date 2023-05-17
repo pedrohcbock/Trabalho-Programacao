@@ -15,12 +15,14 @@
         <tr>
             <th>Nome</th>
             <th>Email</th>
+            <th>Remover</th>
         </tr>
 
                 {% for usr in usuarios %}
         <tr>
             <td>{{usr.nome}}</td>
             <td>{{usr.email}}</td>
+            <td><a class="btn btn-danger" href="usuario_apagar.php?id={{usr.id}}">Apagar</a></td>
         </tr>
         {% else %}
         <tr>
