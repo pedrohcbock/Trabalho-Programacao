@@ -10,23 +10,35 @@ $usuario_id = $_SESSION['user'];
 $filtro_tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 $filtro_data = isset($_POST['data']) ? $_POST['data'] : '';
 $filtro_nome = isset($_POST['nome']) ? $_POST['nome'] : '';
+$filtro_compartilhador = isset($_POST['compartilhador']) ? $_POST['compartilhador'] : '';
 
-$sql = 'SELECT * FROM documentos WHERE usuario_id = ?';
+// Consultar o banco de dados para obter os documentos compartilhados com o usuário atual
+$sql = 'SELECT d.id, d.usuario_id, d.nome, d.tipo, d.data, u.nome AS nome_compartilhador
+        FROM compartilhamentos c
+        INNER JOIN documentos d ON c.documento_id = d.id
+        INNER JOIN usuarios u ON c.usuario_id = u.id
+        WHERE c.usuario_id = ?';
+
 $parametros = [$usuario_id];
 
 if (!empty($filtro_tipo)) {
-    $sql .= ' AND tipo = ?';
+    $sql .= ' AND d.tipo = ?';
     $parametros[] = $filtro_tipo;
 }
 
 if (!empty($filtro_data)) {
-    $sql .= ' AND data = ?';
+    $sql .= ' AND d.data = ?';
     $parametros[] = $filtro_data;
 }
 
 if (!empty($filtro_nome)) {
-    $sql .= ' AND nome LIKE ?';
+    $sql .= ' AND d.nome LIKE ?';
     $parametros[] = '%' . $filtro_nome . '%';
+}
+
+if (!empty($filtro_compartilhador)) {
+    $sql .= ' AND u.nome LIKE ?';
+    $parametros[] = '%' . $filtro_compartilhador . '%';
 }
 
 $stmt = $pdo->prepare($sql);
@@ -35,7 +47,7 @@ $stmt->execute($parametros);
 $arquivos_na_pasta = glob($pasta_documentos . '*');
 
 if ($stmt->rowCount() === 0) {
-    echo 'Não foram encontrados documentos. <a href="documentos_listar.php">Voltar</a>';
+    echo 'Não foram encontrados documentos compartilhados. <a href="documentos_compartilhados.php">Voltar</a>';
     exit;
 }
 
@@ -53,9 +65,10 @@ foreach ($stmt as $doc) {
         'nome' => $doc['nome'],
         'tipo' => $doc['tipo'],
         'data' => $doc['data'],
+        'compartilhador' => $doc['nome_compartilhador'],
         'caminho' => $caminho_do_arquivo,
     );
 }
 
-echo $twig->render('documentos_listar.html', array('documentos' => $documentos));
+echo $twig->render('documentos_compartilhados.html', array('documentos' => $documentos));
 ?>

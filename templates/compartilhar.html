@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compartilhar Documento</title>
+</head>
+<body>
+    <h1>O que irá compartilhar hoje {{idUsuario.nome}}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Selecione um documento:</label>
+        <select name="documento">
+            {% for documento in documentos %}
+                <option value="{{ documento['id'] }}">{{ documento['nome'] }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label>Selecione um usuário:</label>
+        <select name="usuario">
+            {% for usuario in usuarios %}
+                {% if usuario['id'] != idUsuario %}
+                    <option value="{{ usuario['id'] }}">{{ usuario['nome'] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Compartilhar">
+    </form>
+</body>
+</html>

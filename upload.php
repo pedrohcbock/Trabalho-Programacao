@@ -42,4 +42,7 @@ $doc->create([
 ]);
 
 echo 'Arquivo enviado com sucesso';
+
+header('location: meus_documentos.php');
+die;
 ?>

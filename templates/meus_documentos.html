@@ -30,7 +30,6 @@
 
 <table>
     <tr>
-        <th>Usuário</th>
         <th>Nome</th>
         <th>Tipo</th>
         <th>Data</th>
@@ -39,7 +38,6 @@
     </tr>
     {% for doc in documentos %}
     <tr>
-        <td>{{ doc.usuario_id }}</td>
         <td>{{ doc.nome }}</td>
         <td>{{ doc.tipo }}</td>
         <td>{{ doc.data }}</td>
@@ -48,7 +46,7 @@
     </tr>
     {% endfor %}
 </table>
+<p>Deseja compartilhar algum desses documentos com algum amigo?</p> <a href="compartilhar.php">Compartilhar</a>
 </body>
 
 </html>
-
