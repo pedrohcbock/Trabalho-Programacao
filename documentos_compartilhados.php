@@ -12,7 +12,6 @@ $filtro_data = isset($_POST['data']) ? $_POST['data'] : '';
 $filtro_nome = isset($_POST['nome']) ? $_POST['nome'] : '';
 $filtro_compartilhador = isset($_POST['compartilhador']) ? $_POST['compartilhador'] : '';
 
-// Consultar o banco de dados para obter os documentos compartilhados com o usuário atual
 $sql = 'SELECT d.id, d.usuario_id, d.nome, d.tipo, d.data, u.nome AS nome_compartilhador
         FROM compartilhamentos c
         INNER JOIN documentos d ON c.documento_id = d.id
@@ -70,7 +69,6 @@ foreach ($stmt as $doc) {
     );
 }
 
-// Função para enviar o arquivo para download
 function downloadArquivo($caminho) {
     if (file_exists($caminho)) {
         header('Content-Type: application/octet-stream');

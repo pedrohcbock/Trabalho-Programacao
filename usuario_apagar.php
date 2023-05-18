@@ -1,10 +1,8 @@
 <?php
 require('carregar_twig.php');
-require('pdo.php'); // Conexão com o banco
+require('pdo.php');
 
-// Rotina de POST - Apagar o usuário
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Modifica o usuário para ativo = 0
     $id = $_POST['id'] ?? false;
     if ($id) {
         try {
