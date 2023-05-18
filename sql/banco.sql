@@ -5,26 +5,7 @@ CREATE TABLE usuarios(
     nome varchar(250) not null,
     email varchar(250) not null,
     senha varchar(250) not null,
-    PRIMARY KEY (id))
-
-CREATE TABLE documentos(
-    id INT NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(250) NOT NULL,
-    tipo VARCHAR(250) NOT NULL,
-    caminho VARCHAR(250) NOT NULL,
-    usuario_id VARCHAR(250) NOT NULL,
-    data DATE NOT NULL DEFAULT CURDATE(),
-    PRIMARY KEY (id))
-
-CREATE TABLE compartilhamentos (
-    id int NOT NULL AUTO_INCREMENT,
-    documento_id int NOT NULL,
-    usuario_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (documento_id) REFERENCES documentos(id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
-
+    PRIMARY KEY (id));
 
 CREATE TABLE documentos (
     id int NOT NULL AUTO_INCREMENT,
@@ -34,8 +15,7 @@ CREATE TABLE documentos (
     caminho varchar(250) NOT NULL,
     data DATE NOT NULL DEFAULT CURDATE(),
     PRIMARY KEY (id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id));
 
 CREATE TABLE compartilhamentos (
     id int NOT NULL AUTO_INCREMENT,
@@ -43,5 +23,4 @@ CREATE TABLE compartilhamentos (
     usuario_id int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (documento_id) REFERENCES documentos(id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id));
