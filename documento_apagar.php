@@ -8,7 +8,7 @@
             $sql = $pdo->prepare('DELETE FROM documentos WHERE id = ?');
             $sql->execute([$id]);
         }
-        header('location: documentos_listar.php');
+        header('location: meus_documentos.php');
         die;
     }
 
