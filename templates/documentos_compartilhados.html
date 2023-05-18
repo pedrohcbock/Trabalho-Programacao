@@ -57,7 +57,7 @@
                     <td>{{ doc.nome }}</td>
                     <td>{{ doc.tipo }}</td>
                     <td>{{ doc.data }}</td>
-                    <td><a href="data:{{ doc.tipo }};base64,{{ doc.conteudo }}" download class="btn btn-primary">Download</a></td>
+                    <td><a href="{{ doc.caminho }}" download>Download</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

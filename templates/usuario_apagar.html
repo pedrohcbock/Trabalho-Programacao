@@ -6,22 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remover Amigo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Apagar usuário</h1>
-    
-    <p>Tem certeza de que quer fazer isso?</p>
-    <p>Nunca mais será possível recuperar este usuário 😮</p>
-    
-    <p><strong>Você está prestes a apagar o coitado do {{ usuario.nome }}</strong></p>
-    
-    <form action="#" method="post">
-        <input type="hidden" name="id" value="{{ usuario.id }}">
-        <input class="btn btn-danger" type="submit" value="Apagar o dito cujo">
-    </form>
-    
-    <img src="https://img.ifunny.co/images/e599f4d88377c885bf59fd4131ff924d9da415d5c7dad9c3c3265e6331647c7a_1.jpg">
-    
-    <div><a class="btn" href="/usuarios">Cancelar</a></div>
+    <div class="text-center">
+        <h1>Remover amigo</h1>
+        
+        <p>Tem certeza de que deseja fazer isso?</p>
+        
+        <p><strong>Você está prestes a remover seu amigo da lista de amigos</strong></p>
+        
+        <form action="#" method="post">
+            <input type="hidden" name="id" value="{{ usuario.id }}">
+            <input class="btn btn-danger" type="submit" value="Remover">
+        </form>
+        <div><a class="btn btn-secondary mt-3" href="usuarios.php">Cancelar</a></div>
+    </div>
 </body>
 </html>

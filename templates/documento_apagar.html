@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apagar Documentos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Apagar Documento</h1>
+    <div class="text-center">
+        <h1>Apagar Documento</h1>
 
-    <p>Tem certeza de que quer fazer isso?</p>
-    <p>Nunca mais será possível recuperar este arquivo</p>
+        <p>Tem certeza de que quer fazer isso?</p>
 
+        <form action="#" method="post">
+            <input type="hidden" name="id" value="{{ documentos.id }}">
+            <input class="btn btn-danger" type="submit" value="Remover">
+        </form>
 
-    <form action="#" method="post">
-        <input type="hidden" name="id" value="{{ documentos.id }}">
-        <button>
-            <img src="https://imageproxy.ifunny.co/crop:x-20,resize:640x,quality:90x75/images/be0df388257ad5b365095f9f9d0d58476af1332e7bc60ea2cfc914dcdca0d22a_1.jpg"
-                alt="">
-        </button>
-    </form>
-
-    <div><a href="documentos_lsitar.php">Cancelar</a></div>
+        <div><a class="btn btn-secondary mt-3" href="meus_documentos.php">Cancelar</a></div>
+    </div>
+</body>
+</html>

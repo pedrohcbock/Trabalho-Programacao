@@ -70,5 +70,24 @@ foreach ($stmt as $doc) {
     );
 }
 
+// Função para enviar o arquivo para download
+function downloadArquivo($caminho) {
+    if (file_exists($caminho)) {
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . basename($caminho) . '"');
+        header('Content-Length: ' . filesize($caminho));
+        readfile($caminho);
+        exit;
+    } else {
+        echo 'O arquivo não existe.';
+        exit;
+    }
+}
+
+if (isset($_GET['download'])) {
+    $caminho_arquivo = $_GET['download'];
+    downloadArquivo($caminho_arquivo);
+}
+
 echo $twig->render('documentos_compartilhados.html', array('documentos' => $documentos));
 ?>
