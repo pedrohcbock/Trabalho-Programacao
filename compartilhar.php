@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $_SESSION['success_message'] = 'Arquivo compartilhado com sucesso';
 
-                header('Location: documentos_compartilhados.php');
+                header('Location: meu_documentos.php');
                 exit();
             } else {
                 echo "Documento inválido. Por favor, selecione um documento válido.";
